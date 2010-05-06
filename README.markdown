@@ -10,6 +10,10 @@ put this in the top in your deploy.rb:
 
     require 'capistrano/git-tags'
 
+TODO
+===
+
+* enable to specify the formatting of the tag
 
 Original idea: 
 ---
