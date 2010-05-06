@@ -1,19 +1,20 @@
 Capistrano GitTagging Extension
 ====
 
-
 Automagically tag your current deployed release with capistrano
 
-usage: 
+Install: 
 
-put this in the top in your deploy.rb:
+    gem install capistrano-git-tags
 
-    require 'capistrano/git-tags'
+usage: put this in the top in your deploy.rb:
+
+    require 'capistrano/git/tags'
 
 TODO
-===
+---
 
-* enable to specify the formatting of the tag
+* specify the formatting of the tag
 
 Original idea: 
 ---
