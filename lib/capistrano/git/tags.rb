@@ -13,16 +13,23 @@ Capistrano::Configuration.instance.load do
 
     namespace :tags do
 
+      def tag_format(options = {})
+        tag_format = git_tag_format || ":rails_env_:release"
+        tag_format = tag_format.gsub(":rails_env", options[:rails_env] || rails_env)
+        tag_format = tag_format.gsub(":release",   options[:release]   || "")
+        tag_format
+      end
+
       desc "Place release tag into Git and push it to server."
       task :push_deploy_tag do
         user = `git config --get user.name`
         email = `git config --get user.email`
 
-        puts `git tag #{rails_env}_#{release_name} #{revision} -m "Deployed by #{user} <#{email}>"`
+        puts `git tag #{tag_format(:release => release_name)} #{revision} -m "Deployed by #{user} <#{email}>"`
         puts `git push --tags`
       end
 
-      desc "Place release tag into Git and push it to server."
+      desc "Remove deleted release tag from Git and push it to server."
       task :cleanup_deploy_tag do
         count = fetch(:keep_releases, 5).to_i
         if count >= releases.length
@@ -30,7 +37,7 @@ Capistrano::Configuration.instance.load do
         else
           logger.info "keeping #{count} of #{releases.length} release tags"
 
-          tags = (releases - releases.last(count)).map { |release| "#{rails_env}_#{release}" }
+          tags = (releases - releases.last(count)).map { |release| tag_format(:release => release) }
 
           tags.each do |tag|
             `git tag -d #{tag}`
