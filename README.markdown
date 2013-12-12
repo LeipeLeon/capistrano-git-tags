@@ -1,3 +1,5 @@
+For capistrano > 2 check [https://github.com/dimko/capistrano-tagging](https://github.com/dimko/capistrano-tagging)
+
 Capistrano GitTagging Extension
 ====
 
