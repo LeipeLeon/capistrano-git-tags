@@ -1,4 +1,5 @@
 For capistrano 3 check [https://github.com/ianheggie/capistrano-tagging3](https://github.com/ianheggie/capistrano-tagging3)
+
 For capistrano > 2 check [https://github.com/dimko/capistrano-tagging](https://github.com/dimko/capistrano-tagging)
 
 Capistrano GitTagging Extension
